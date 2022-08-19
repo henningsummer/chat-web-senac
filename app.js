@@ -1,13 +1,14 @@
 /* importar as configurações do servidor */
 var app = require('./config/server');
-const io = require('socket.io');
+;
 
 /* parametrizar a porta de escuta */
 var server = app.listen(process.env.PORT || 5000, function () {
 	console.log('Servidor online');
 })
 
-io.listen(server);
+const serveIo = require('socket.io');
+const io = new serveIo.Server(server);
 
 app.set('io', io);
 
